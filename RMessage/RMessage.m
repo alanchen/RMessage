@@ -101,8 +101,7 @@ static UIViewController *_defaultViewController;
                    customTypeName:(NSString *)customTypeName
                          duration:(NSTimeInterval)duration
                          callback:(void (^)())callback
-                      buttonTitle:(NSString *)buttonTitle
-                   buttonCallback:(void (^)())buttonCallback
+                           button:(UIButton *)button
                        atPosition:(RMessagePosition)messagePosition
              canBeDismissedByUser:(BOOL)dismissingEnabled
 {
@@ -114,8 +113,7 @@ static UIViewController *_defaultViewController;
                             customTypeName:customTypeName
                                   duration:duration
                                   callback:callback
-                               buttonTitle:buttonTitle
-                            buttonCallback:buttonCallback
+                                    button:button
                                 atPosition:messagePosition
                       canBeDismissedByUser:dismissingEnabled];
 }
@@ -136,8 +134,7 @@ static UIViewController *_defaultViewController;
                             customTypeName:customTypeName
                                   duration:duration
                                   callback:callback
-                               buttonTitle:nil
-                            buttonCallback:nil
+                                    button:nil
                                 atPosition:RMessagePositionTop
                       canBeDismissedByUser:YES];
 }
@@ -159,8 +156,7 @@ static UIViewController *_defaultViewController;
                             customTypeName:customTypeName
                                   duration:duration
                                   callback:callback
-                               buttonTitle:nil
-                            buttonCallback:nil
+                                    button:nil
                                 atPosition:RMessagePositionTop
                       canBeDismissedByUser:dismissingEnabled];
 }
@@ -180,8 +176,7 @@ static UIViewController *_defaultViewController;
                             customTypeName:customTypeName
                                   duration:RMessageDurationAutomatic
                                   callback:callback
-                               buttonTitle:nil
-                            buttonCallback:nil
+                                    button:nil
                                 atPosition:RMessagePositionTop
                       canBeDismissedByUser:YES];
 }
@@ -195,8 +190,7 @@ static UIViewController *_defaultViewController;
                           customTypeName:(NSString *)customTypeName
                                 duration:(NSTimeInterval)duration
                                 callback:(void (^)())callback
-                             buttonTitle:(NSString *)buttonTitle
-                          buttonCallback:(void (^)())buttonCallback
+                                  button:(UIButton *)button
                               atPosition:(RMessagePosition)messagePosition
                     canBeDismissedByUser:(BOOL)dismissingEnabled
 {
@@ -210,8 +204,7 @@ static UIViewController *_defaultViewController;
                                                               duration:duration
                                                       inViewController:viewController
                                                               callback:callback
-                                                           buttonTitle:buttonTitle
-                                                        buttonCallback:buttonCallback
+                                                                button:button
                                                             atPosition:messagePosition
                                                   canBeDismissedByUser:dismissingEnabled];
     [self prepareNotificationForPresentation:messageView];

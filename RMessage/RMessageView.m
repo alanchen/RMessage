@@ -32,6 +32,8 @@ static NSMutableDictionary *globalDesignDictionary;
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
+@property (nonatomic, strong) UIButton *button;
+
 @property (nonatomic, strong) UIImage *iconImage;
 
 /** Contains the appropriate design dictionary for the specified message view type */
@@ -43,9 +45,6 @@ static NSMutableDictionary *globalDesignDictionary;
 /** The displayed subtitle of this message view */
 @property (nonatomic, strong) NSString *subtitle;
 
-/** The title of the added button */
-@property (nonatomic, strong) NSString *buttonTitle;
-
 /** The view controller this message is displayed in */
 @property (nonatomic, strong) UIViewController *viewController;
 
@@ -53,8 +52,6 @@ static NSMutableDictionary *globalDesignDictionary;
 @property (nonatomic, strong) NSLayoutConstraint *topToVCLayoutConstraint;
 
 @property (nonatomic, copy) void (^callback)();
-
-@property (nonatomic, copy) void (^buttonCallback)();
 
 /** The starting constant value that should be set for the topToVCTopLayoutConstraint when animating */
 @property (nonatomic, assign) CGFloat topToVCStartConstant;
@@ -206,12 +203,11 @@ static NSMutableDictionary *globalDesignDictionary;
                         subtitle:(NSString *)subtitle
                        iconImage:(UIImage *)iconImage
                             type:(RMessageType)messageType
-                customTypeName:(NSString *)customTypeName
+                  customTypeName:(NSString *)customTypeName
                         duration:(CGFloat)duration
                 inViewController:(UIViewController *)viewController
                         callback:(void (^)())callback
-                     buttonTitle:(NSString *)buttonTitle
-                  buttonCallback:(void (^)())buttonCallback
+                          button:(UIButton *)button
                       atPosition:(RMessagePosition)position
             canBeDismissedByUser:(BOOL)dismissingEnabled
 {
@@ -229,7 +225,10 @@ static NSMutableDictionary *globalDesignDictionary;
         _callback = callback;
         _messageType = messageType;
         _customTypeName = customTypeName;
-        _buttonCallback = buttonCallback;
+        if (button) {
+            _button = button;
+            [self setupButton];
+        }
 
         NSError *designError = [self setupDesignDictionariesWithMessageType:_messageType customTypeName:customTypeName];
         if (designError) return nil;
@@ -461,19 +460,16 @@ static NSMutableDictionary *globalDesignDictionary;
 - (void)setupLabelPreferredMaxLayoutWidth
 {
     CGFloat iconImageWidthAndPadding = 0.f;
+    CGFloat buttonSizeAndPadding = 0.f;
     if (_iconImage) iconImageWidthAndPadding = _iconImage.size.width + 15.f;
-    _titleLabel.preferredMaxLayoutWidth = self.superview.bounds.size.width - iconImageWidthAndPadding - 30.f;
+    if (_button) buttonSizeAndPadding = _button.bounds.size.width + 15.f;
+    _titleLabel.preferredMaxLayoutWidth = self.superview.bounds.size.width - iconImageWidthAndPadding - buttonSizeAndPadding - 30.f;
     _subtitleLabel.preferredMaxLayoutWidth = _titleLabel.preferredMaxLayoutWidth;
 }
 
 - (void)executeMessageViewCallBack
 {
     if (self.callback) self.callback();
-}
-
-- (void)executeMessageViewButtonCallBack
-{
-    if (self.buttonCallback) self.buttonCallback();
 }
 
 - (void)didMoveToWindow
@@ -674,6 +670,51 @@ static NSMutableDictionary *globalDesignDictionary;
                                                                      constant:-10.f];
     [self addSubview:self.iconImageView];
     [[self class] activateConstraints:@[imgViewCenterY, imgViewLeading, imgViewTrailing, imgViewBottom] inSuperview:self];
+}
+
+- (void)setupButton
+{
+    self.button.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.button setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+    [self.button setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisVertical];
+
+    NSLayoutConstraint *buttonCenterY = [NSLayoutConstraint constraintWithItem:self.button
+                                                                     attribute:NSLayoutAttributeCenterY
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.titleSubtitleContainerView
+                                                                     attribute:NSLayoutAttributeCenterY
+                                                                    multiplier:1.f
+                                                                      constant:0.f];
+    NSLayoutConstraint *buttonLeading = [NSLayoutConstraint constraintWithItem:self.button
+                                                                     attribute:NSLayoutAttributeLeading
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.titleSubtitleContainerView
+                                                                     attribute:NSLayoutAttributeTrailing
+                                                                    multiplier:1.f
+                                                                      constant:15.f];
+    NSLayoutConstraint *buttonTrailing = [NSLayoutConstraint constraintWithItem:self.button
+                                                                     attribute:NSLayoutAttributeTrailing
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self
+                                                                     attribute:NSLayoutAttributeTrailing
+                                                                    multiplier:1.f
+                                                                      constant:-15.f];
+    NSLayoutConstraint *buttonTop = [NSLayoutConstraint constraintWithItem:self.button
+                                                                    attribute:NSLayoutAttributeTop
+                                                                    relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                                       toItem:self
+                                                                    attribute:NSLayoutAttributeTop
+                                                                   multiplier:1.f
+                                                                     constant:10.f];
+    NSLayoutConstraint *buttonBottom = [NSLayoutConstraint constraintWithItem:self.button
+                                                                      attribute:NSLayoutAttributeBottom
+                                                                      relatedBy:NSLayoutRelationLessThanOrEqual
+                                                                         toItem:self
+                                                                      attribute:NSLayoutAttributeBottom
+                                                                     multiplier:1.f
+                                                                       constant:-10.f];
+    [self addSubview:self.button];
+    [[self class] activateConstraints:@[buttonCenterY, buttonLeading, buttonTrailing, buttonTop, buttonBottom] inSuperview:self];
 }
 
 - (void)setupGestureRecognizers

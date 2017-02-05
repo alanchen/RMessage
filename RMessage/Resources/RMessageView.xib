@@ -14,16 +14,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-<<<<<<< HEAD
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49I-AE-5sP">
                     <rect key="frame" x="15" y="10" width="59" height="46"/>
-=======
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="mDM-Gl-mfa">
-                    <rect key="frame" x="15" y="18" width="44" height="44"/>
-                </imageView>
-                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="49I-AE-5sP">
-                    <rect key="frame" x="74" y="17" width="206" height="47"/>
->>>>>>> Bugfix and some small code cleanup and refactoring.
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJU-tq-cfR">
                             <rect key="frame" x="0.0" y="0.0" width="59" height="21"/>
@@ -55,25 +47,12 @@
                 <constraint firstItem="49I-AE-5sP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="KHp-N5-b5s"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="49I-AE-5sP" secondAttribute="bottom" constant="10" id="Urt-nc-SD2"/>
                 <constraint firstItem="49I-AE-5sP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="XoR-Zr-h6e"/>
-<<<<<<< HEAD
                 <constraint firstItem="49I-AE-5sP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="749" constant="15" id="uCe-Eo-QlD"/>
                 <constraint firstItem="49I-AE-5sP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="749" constant="10" id="uoF-wG-j5j"/>
-=======
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="mDM-Gl-mfa" secondAttribute="bottom" constant="10" id="Y9o-qS-trm"/>
-                <constraint firstAttribute="trailing" secondItem="49I-AE-5sP" secondAttribute="trailing" constant="40" id="cad-DE-tdP"/>
-                <constraint firstAttribute="bottom" secondItem="49I-AE-5sP" secondAttribute="bottom" priority="250" constant="10" id="m0c-K0-I0O"/>
-                <constraint firstItem="mDM-Gl-mfa" firstAttribute="centerY" secondItem="49I-AE-5sP" secondAttribute="centerY" id="nOy-cz-n4l"/>
-                <constraint firstItem="mDM-Gl-mfa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="pBb-vd-doC"/>
-                <constraint firstItem="49I-AE-5sP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="250" constant="10" id="qUm-KO-r3O"/>
->>>>>>> Bugfix and some small code cleanup and refactoring.
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-<<<<<<< HEAD
-=======
-                <outlet property="iconImageView" destination="mDM-Gl-mfa" id="ewl-Wk-Mic"/>
->>>>>>> Bugfix and some small code cleanup and refactoring.
                 <outlet property="subtitleLabel" destination="86Q-SR-N4H" id="b36-f7-jMs"/>
                 <outlet property="titleLabel" destination="bJU-tq-cfR" id="cQG-kC-CBc"/>
                 <outlet property="titleSubtitleContainerView" destination="49I-AE-5sP" id="gnK-Tn-Kb9"/>

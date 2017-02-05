@@ -121,8 +121,7 @@ typedef NS_ENUM(NSInteger, RMessageDuration)
  specifying an additional custom design file and when the type parameter in this call is RMessageTypeCustom
  @param duration The duration of the notification being displayed
  @param callback The block that should be executed, when the user tapped on the message
- @param buttonTitle The title for button (optional)
- @param buttonCallback The block that should be executed, when the user tapped on the button
+ @param button The button to display on the right side of the message (optional)
  @param messagePosition The position of the message on the screen
  @param dismissingEnabled Should the message be dismissed when the user taps/swipes it
  */
@@ -133,8 +132,7 @@ typedef NS_ENUM(NSInteger, RMessageDuration)
                    customTypeName:(NSString *)customTypeName
                          duration:(NSTimeInterval)duration
                          callback:(void (^)())callback
-                      buttonTitle:(NSString *)buttonTitle
-                   buttonCallback:(void (^)())buttonCallback
+                           button:(UIButton *)button
                        atPosition:(RMessagePosition)messagePosition
              canBeDismissedByUser:(BOOL)dismissingEnabled;
 
@@ -206,6 +204,7 @@ typedef NS_ENUM(NSInteger, RMessageDuration)
  specifying an additional custom design file and when the type parameter in this call is RMessageTypeCustom
  @param duration The duration of the notification being displayed
  @param callback The block that should be executed, when the user tapped on the message
+ @param button The button to display on the right side of the message (optional)
  @param buttonTitle The title for button (optional)
  @param buttonCallback The block that should be executed, when the user tapped on the button
  @param messagePosition The position of the message on the screen
@@ -219,8 +218,7 @@ typedef NS_ENUM(NSInteger, RMessageDuration)
                           customTypeName:(NSString *)customTypeName
                                 duration:(NSTimeInterval)duration
                                 callback:(void (^)())callback
-                             buttonTitle:(NSString *)buttonTitle
-                          buttonCallback:(void (^)())buttonCallback
+                                  button:(UIButton *)button
                               atPosition:(RMessagePosition)messagePosition
                     canBeDismissedByUser:(BOOL)dismissingEnabled;
 
