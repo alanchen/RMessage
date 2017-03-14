@@ -270,6 +270,12 @@ static NSMutableDictionary *globalDesignDictionary;
     [self.titleLabel setTextColor:_titleTextColor];
 }
 
+- (void)setTitleTextAlignment:(NSTextAlignment)alignment
+{
+    _titleTextAlignment = alignment;
+    [self.titleLabel setTextAlignment:_titleTextAlignment];
+}
+
 - (void)setMessageIcon:(UIImage *)messageIcon
 {
     _messageIcon = messageIcon;

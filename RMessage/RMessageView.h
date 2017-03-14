@@ -61,6 +61,7 @@
 /** Customize title font using Apperance */
 @property (nonatomic, strong) UIFont *titleFont UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic) NSTextAlignment titleTextAlignment UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIFont *subtitleFont UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor *subtitleTextColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIImage *messageIcon UI_APPEARANCE_SELECTOR;
